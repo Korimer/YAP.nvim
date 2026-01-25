@@ -1,23 +1,16 @@
-SideText - represents the text that composes half a pair.
-Example html opening text:
-```
+The "pair object"
+```lua
 {
-    {
-        capture = false,
-        textcontent = "<%s*"
-    }, {
-        capture = true,
-        textcontent = "%w[%w:_-]*"
-    }, {
-        capture = false,
-        textcontent = ".->"
-    }
+    type = -1 -- internal id of the pair
+    -- {1,2} = line 1, character 2
+    opening={start={1,2},end={1,2}};
+    closing={start={1,3},end={1,3}}
 }
 ```
 
-Store pairs in format:
+Pairs are stored in the form:
 ```
 {
-    a
+    
 }
 ```

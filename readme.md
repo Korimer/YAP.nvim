@@ -23,7 +23,10 @@ local opts = {
 
     -- What filetypes this pair can exist in. If falsey, the pair exists in all filetypes. 
     filetypes = {"lua"}, -- can also be "*"
-
+    
+    -- can be "never|always|clean"
+    -- "clean" refers to a pair with no characters between the lhs and the rhs.
+    cr_target = "clean",
     
 }
 ```
