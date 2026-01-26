@@ -1,35 +1,11 @@
-local proper_pairs = require("default_pairs.lua")
+local ps = require('pair_structure')
+local default_pairs = require('default_pairs')
 
----@class CompletePair
----@field open Index2d
----@field close Index2d
-local CompletePair = {}
+local mystruct = (
+  ps.Index2d:new(
+    ps.Index:new(1,1),
+    ps.Index:new(1,2)
+  )
+)
 
-function CompletePair.new(open,close)
-  return setmetatable({open=open, close=close}, CompletePair)
-end
-
----@class Index2d
----@field head Index
----@field tail Index
-local Index2d = {}
-
-function Index2d.new(head,tail)
-  return setmetatable({head=head, tail=tail}, Index2d)
-end
-
---function Index2d.new(start,end)
---  return setmetatable({start=start, end=end}, Index2d)
---end
-
----@class Index
----@field col integer
----@field row integer
-local Index = {}
-
-function Index.new(row,col)
-  return setmetatable({row=row, col=col}, Index)
-end
-
-
-
+vim.print(mystruct)
