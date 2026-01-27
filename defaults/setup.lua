@@ -1,4 +1,7 @@
 return {
+  tmp_val = false,
+  pairs = require('defaults.pairs'),
+  default_pair = {
     -- In the event that two pairs contain patterns that could both match,
     -- the higher priority pair is chosen.
     -- Helpful when, say, the pair `<div></div>` could be confused for the pair `<>`
@@ -11,5 +14,7 @@ return {
     -- can be "never|always|clean"
     -- "clean" refers to a pair with no characters between the lhs and the rhs.
     cr_target = "clean",
-    
+
+    is_pattern = false,
+  }
 }
