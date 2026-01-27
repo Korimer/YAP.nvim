@@ -1,13 +1,27 @@
----@class CompletePair
----@field open Index2d
----@field close Index2d
-local CompletePair = {}
-CompletePair.__index = CompletePair
+---@class Index
+---@field col integer
+---@field row integer
+local Index = {}
+Index.__index = Index
 
----@param open Index2d
----@param close Index2d
-function CompletePair.new(self,open,close)
-  return setmetatable({open=open, close=close}, CompletePair)
+function Index.new(self,row,col)
+  return setmetatable({row=row, col=col}, Index)
+end
+
+function Index.__eq(a, b)
+  return a.row == b.row and a.col == b.col
+end
+function Index.__lt(a, b)
+  return a.row < b.row or (a.row == b.row and a.col < b.col)
+end
+function Index.__le(a, b)
+  return a < b or a == b
+end
+function Index.__gt(a, b)
+  return b < a
+end
+function Index.__ge(a, b)
+  return b <= a
 end
 
 ---@class Index2d
@@ -40,30 +54,17 @@ function Index2d.contains(self,point)
   return point <= self.head and point >= self.tail
 end
 
----@class Index
----@field col integer
----@field row integer
-local Index = {}
-Index.__index = Index
 
-function Index.new(self,row,col)
-  return setmetatable({row=row, col=col}, Index)
-end
+---@class CompletePair
+---@field open Index2d
+---@field close Index2d
+local CompletePair = {}
+CompletePair.__index = CompletePair
 
-function Index.__eq(a, b)
-  return a.row == b.row and a.col == b.col
-end
-function Index.__lt(a, b)
-  return a.row < b.row or (a.row == b.row and a.col < b.col)
-end
-function Index.__le(a, b)
-  return a < b or a == b
-end
-function Index.__gt(a, b)
-  return b < a
-end
-function Index.__ge(a, b)
-  return b <= a
+---@param open Index2d
+---@param close Index2d
+function CompletePair.new(self,open,close)
+  return setmetatable({open=open, close=close}, CompletePair)
 end
 
 return {
