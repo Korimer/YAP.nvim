@@ -9,8 +9,13 @@ function M.complete_set(...)
   local arg = {...} -- What? Why?
   for i=1, #arg do
     local pair_table = arg[i]
+    local pcnt = 1
     for lhs,rhs in pairs(pair_table) do
-      complete[lhs] = M.normalize(rhs)
+      complete[pcnt] = {
+        side = {lhs=lhs, rhs=rhs};
+        data = M.normalize(rhs);
+      }
+      pcnt = pcnt+1
     end
   end
   return complete
@@ -19,9 +24,10 @@ end
 function M.normalize(rhs)
   local tblstat
   if type(rhs) == "string" then
-    tblstat = {rhs = rhs}
+    tblstat = {}
   else
     tblstat = rhs
+    tblstat["rhs"] = nil
   end
   return vim.tbl_deep_extend('force',M.defaults,tblstat)
 end
